@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Special Sorry Page ❤️</title>
+<style>
+body{margin:0;font-family:sans-serif;background:#0b0f1a;color:#fff;overflow:hidden;height:100vh;display:flex;justify-content:center;align-items:center}
+#container{position:relative;width:100%;max-width:600px;height:90vh;border-radius:16px;background:#121826;padding:16px;overflow:hidden;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,0.6)}
+button{position:absolute;padding:10px 16px;border:none;border-radius:12px;background:#ff6b81;color:#fff;font-weight:600;cursor:pointer;transition:0.3s}
+button:hover{transform:scale(1.05)}
+.heart{position:absolute;width:20px;height:20px;font-size:20px;animation:float 5s linear infinite;pointer-events:none}
+@keyframes float{0%{transform:translateY(100vh) rotate(0deg)}100%{transform:translateY(-10vh) rotate(360deg)}}
+#gift{display:none;margin-top:40px;font-size:28px;color:#ff9aa2;font-weight:bold}
+</style>
+</head>
+<body>
+<div id="container">
+  <h1>Hey Simran 😘</h1>
+  <div id="gift">🎁 I LOVE YOU ❤️ – Simran</div>
+</div>
+
+<script>
+// ❤️ floating hearts
+setInterval(()=>{
+  const heart=document.createElement('div');
+  heart.className='heart';
+  heart.innerText='❤️';
+  heart.style.left=Math.random()*90+'%';
+  heart.style.animationDuration=(4+Math.random()*3)+'s';
+  heart.style.fontSize=(16+Math.random()*20)+'px';
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),7000);
+},300);
+
+// buttons array (tere cute lines)
+const buttonsTexts=[
+"Hello 😘","Kaise hoo?","Aaj thoda gussa ho?","Sorry bolna h 😇","Sun le yaar","Gift hai tere liye 🎁",
+"Sunn","Sorry bolna thaa","Accha chal niche click kr","Boluu kyaa?","Tu bolgi meko?","Bolde Sorry ❤️",
+"Arre ruk bolra","Last abb","3 2 1","BOOM ❤️"
+];
+
+const container=document.getElementById('container');
+let i=0;
+
+function createButton(){
+  if(i>=buttonsTexts.length){return;}
+  const btn=document.createElement('button');
+  btn.innerText=buttonsTexts[i];
+  btn.style.top=Math.random()*70 + "%";
+  btn.style.left=Math.random()*70 + "%";
+  container.appendChild(btn);
+  btn.addEventListener('click', ()=>{
+    btn.remove();
+    i++;
+    if(i===buttonsTexts.length){
+      // gift reveal
+      document.getElementById('gift').style.display='block';
+      // extra confetti hearts
+      for(let j=0;j<100;j++){
+        const h=document.createElement('div');
+        h.className='heart';
+        h.innerText='❤️';
+        h.style.left=Math.random()*90+'%';
+        h.style.fontSize=(16+Math.random()*20)+'px';
+        h.style.animationDuration=(3+Math.random()*3)+'s';
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),7000);
+      }
+    } else {
+      setTimeout(createButton,300);
+    }
+  });
+}
+
+createButton(); // start
+
+// prevent leaving
+window.onbeforeunload=function(e){
+  return "Arre ruk jao, gift dekhne se pehle mat jao! 😅";
+};
+</script>
+</body>
+</html>
